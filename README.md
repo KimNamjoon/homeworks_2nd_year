@@ -3,6 +3,6 @@
 
 **№**|**Описание**|**Ссылка на работу**
 ---|---|---:
-**1**|Игра "Виселица"|[Код]()
+**1**|Игра "Виселица"|[Код](https://github.com/KimNamjoon/homeworks_2nd_year/blob/master/hw1/hw1.py)
 
 ![](https://i.pinimg.com/originals/6f/e7/92/6fe792ec17434775f693d09037e450c7.png)
