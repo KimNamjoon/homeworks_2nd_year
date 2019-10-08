@@ -8,7 +8,7 @@ import os
 telebot.apihelper.proxy = {'https': 'socks5h://geek:socks@t.geekclass.ru:7777'}
 bot = telebot.TeleBot("859243603:AAFGCSutKzT5Ksy4KOAEpPKMZM6zxGJ5PqA")
 bot.remove_webhook()
-bot.set_webhook(url="https://git.heroku.com/shielded-headland-76315.git")
+bot.set_webhook(url="https://git.heroku.com/evening-woodland-05043.git")
 
 app = flask.Flask(__name__)
 
