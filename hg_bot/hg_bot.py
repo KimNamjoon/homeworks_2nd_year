@@ -5,10 +5,10 @@ from flask
 import os
 
 
-telebot.apihelper.proxy = {'https': 'socks5h://geek:socks@t.geekclass.ru:7777'}
+#telebot.apihelper.proxy = {'https': 'socks5h://geek:socks@t.geekclass.ru:7777'}
 bot = telebot.TeleBot("859243603:AAFGCSutKzT5Ksy4KOAEpPKMZM6zxGJ5PqA")
-bot.remove_webhook()
-bot.set_webhook(url="https://git.heroku.com/evening-woodland-05043.git")
+#bot.remove_webhook()
+#bot.set_webhook(url="https://git.heroku.com/evening-woodland-05043.git")
 
 app = flask.Flask(__name__)
 
@@ -33,14 +33,16 @@ def index():
     return 'ok'
 
 @app.route("/bot", methods=['POST'])
-def webhook():
-    if flask.request.headers.get('content-type') == 'application/json':
-        json_string = flask.request.get_data().decode('utf-8')
-        update = telebot.types.Update.de_json(json_string)
-        bot.process_new_updates([update])
-        return ''
-    else:
-        flask.abort(403)
+#def webhook():
+#    if flask.request.headers.get('content-type') == 'application/json':
+#        json_string = flask.request.get_data().decode('utf-8')
+#        update = telebot.types.Update.de_json(json_string)
+#        bot.process_new_updates([update])
+#        return ''
+#    else:
+#        flask.abort(403)
+
+bot.polling(none_stop = True)
 
 if __name__ == '__main__':
     import os
