@@ -1,1 +1,1 @@
-web: python my_app.py
+web: python hg_bot.py
