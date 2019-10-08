@@ -5,17 +5,22 @@ from flask
 import os
 
 
+telebot.apihelper.proxy = {'https': 'socks5h://geek:socks@t.geekclass.ru:7777'}
 bot = telebot.TeleBot("859243603:AAFGCSutKzT5Ksy4KOAEpPKMZM6zxGJ5PqA")
+bot.remove_webhook()
+bot.set_webhook(url="https://<your app_name>.herokuapp.com/bot")
+
+app = flask.Flask(__name__)
 
 
-def chain(): #хоба, вот функция для цепи
-    with open('hg.txt', encoding='utf-8') as f: #открываем войну и мир
-        t = f.read() #читаем войну и мир в переменную
-    m = markovify.Text(t) #хоп, тренируем цепь на тексе
-    return m.make_short_sentence(max_chars=200) #генерим предложение в макс 200 символов длиной и отдаем его
+def chain():
+    with open('hg.txt', encoding='utf-8') as f:
+        t = f.read()
+    m = markovify.Text(t)
+    return m.make_short_sentence(max_chars=200)
 
 
-@bot.message_handler(commands=['start', 'help']) #команды бота пошли - эта говорит ему вот так отвечать на /start или /help
+@bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.send_message(message.chat.id, 'Приветствую, трибут. Это бот, генерирующий то, как пройдут твои "Голодные Игры"!\nОт вас требуется ввести любое сообщение')
 
@@ -23,6 +28,19 @@ def send_welcome(message):
 def ans(message):
     bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n{} '.format(chain()))
 
+@app.route("/", methods=['GET', 'HEAD'])
+def index():
+    return 'ok'
+
+@app.route("/bot", methods=['POST'])
+def webhook():
+    if flask.request.headers.get('content-type') == 'application/json':
+        json_string = flask.request.get_data().decode('utf-8')
+        update = telebot.types.Update.de_json(json_string)
+        bot.process_new_updates([update])
+        return ''
+    else:
+        flask.abort(403)
 
 if __name__ == '__main__':
     import os
