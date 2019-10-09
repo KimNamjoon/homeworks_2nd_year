@@ -6,6 +6,9 @@ import re
 import flask
 
 bot = telebot.TeleBot("859243603:AAFGCSutKzT5Ksy4KOAEpPKMZM6zxGJ5PqA")
+require('https').createServer().listen(process.env.PORT || 5000).on('request', function(req, res){
+  res.end('')
+});
 
 app = flask.Flask(__name__)
 
