@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+п»ї# -*- coding: utf-8 -*-
 
 import telebot
 import conf
@@ -18,11 +18,11 @@ def chain():
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, 'Приветствую. Это бот, который составляет фразу на основе серии книг о Голодных играх.\n Напишите в ответ какой-нибудь текст.')
+    bot.send_message(message.chat.id, 'РџСЂРёРІРµС‚СЃС‚РІСѓСЋ. Р­С‚Рѕ Р±РѕС‚, РєРѕС‚РѕСЂС‹Р№ СЃРѕСЃС‚Р°РІР»СЏРµС‚ С„СЂР°Р·Сѓ РЅР° РѕСЃРЅРѕРІРµ СЃРµСЂРёРё РєРЅРёРі Рѕ Р“РѕР»РѕРґРЅС‹С… РёРіСЂР°С….\n РќР°РїРёС€РёС‚Рµ РІ РѕС‚РІРµС‚ РєР°РєРѕР№-РЅРёР±СѓРґСЊ С‚РµРєСЃС‚.')
 
 @bot.message_handler(func=lambda m: True)
 def ans(message):
-    bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n{} '.format(chain()))
+    bot.send_message(message.chat.id, 'Р РїСѓСЃС‚СЊ СѓРґР°С‡Р° РІСЃРµРіРґР° Р±СѓРґРµС‚ РЅР° РІР°С€РµР№ СЃС‚РѕСЂРѕРЅРµ!\n{} '.format(chain()))
 
 bot.polling(none_stop = True)
 
