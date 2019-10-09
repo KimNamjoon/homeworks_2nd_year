@@ -22,7 +22,7 @@ def chain():
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, 'Приветствую, трибут. Это бот, генерирующий то, как пройдут твои "Голодные Игры"!\nОт вас требуется ввести любое сообщение')
+    bot.send_message(message.chat.id, 'Приветствую, трибут. Это бот, генерирующий то, как пройдут твои "Голодные Игры"!\n Введите любое сообщение')
 
 @bot.message_handler(func=lambda m: True)
 def ans(message):
