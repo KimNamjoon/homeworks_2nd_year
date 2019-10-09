@@ -22,7 +22,7 @@ def send_welcome(message):
 @bot.message_handler(func=lambda m: True)
 def ans(message):
     n = chain().make_short_sentence(max_chars=150)
-    bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n{} ' + n)
+    bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n ' + n)
 
 bot.polling(none_stop = True)
 
