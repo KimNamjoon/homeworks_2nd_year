@@ -4,14 +4,9 @@ import markovify
 import flask
 import os
 
-
-#telebot.apihelper.proxy = {'https': 'socks5h://geek:socks@t.geekclass.ru:7777'}
 bot = telebot.TeleBot("859243603:AAFGCSutKzT5Ksy4KOAEpPKMZM6zxGJ5PqA")
-#bot.remove_webhook()
-#bot.set_webhook(url="https://git.heroku.com/evening-woodland-05043.git")
 
 app = flask.Flask(__name__)
-
 
 def chain():
     with open('hg.txt', encoding='utf-8') as f:
@@ -19,28 +14,13 @@ def chain():
     m = markovify.Text(t)
     return m.make_short_sentence(max_chars=200)
 
-
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, 'Приветствую, трибут. Это бот, генерирующий то, как пройдут твои "Голодные Игры"!\n Введите любое сообщение')
+    bot.send_message(message.chat.id, 'Приветствую. Это бот, который составляет фразу на основе серии книг о Голодных играх.\n Напишите в ответ какой-нибудь текст.')
 
 @bot.message_handler(func=lambda m: True)
 def ans(message):
     bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n{} '.format(chain()))
-
-@app.route("/", methods=['GET', 'HEAD'])
-def index():
-    return 'ok'
-
-@app.route("/bot", methods=['POST'])
-#def webhook():
-#    if flask.request.headers.get('content-type') == 'application/json':
-#        json_string = flask.request.get_data().decode('utf-8')
-#        update = telebot.types.Update.de_json(json_string)
-#        bot.process_new_updates([update])
-#        return ''
-#    else:
-#        flask.abort(403)
 
 bot.polling(none_stop = True)
 
