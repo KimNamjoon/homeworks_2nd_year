@@ -1,7 +1,7 @@
 import telebot
 import conf
 import markovify
-from flask
+import flask
 import os
 
 
