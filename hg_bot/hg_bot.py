@@ -13,7 +13,7 @@ def chain():
     with open('hg.txt', encoding='utf-8') as f:
         t = f.read()
     m = markovify.Text(t)
-    return m.make_short_sentence(max_chars=100)
+    return m
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -21,7 +21,8 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda m: True)
 def ans(message):
-    bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n{} '.format(chain()))
+    n = chain().make_short_sentence(max_chars=150)
+    bot.send_message(message.chat.id, 'И пусть удача всегда будет на вашей стороне!\n{} ' + n)
 
 bot.polling(none_stop = True)
 
