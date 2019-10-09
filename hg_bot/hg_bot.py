@@ -1,10 +1,9 @@
 ﻿# -*- coding: utf-8 -*-
 
-import telebot
-import conf
 import markovify
+import telebot
+import re
 import flask
-import os
 
 bot = telebot.TeleBot("859243603:AAFGCSutKzT5Ksy4KOAEpPKMZM6zxGJ5PqA")
 
